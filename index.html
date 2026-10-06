@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crystal Group</title>
+  <meta name="description" content="Crystal Group is a group of companies connected by one vision, delivering dependable solutions with purpose.">
+  <meta name="theme-color" content="#0E2237">
+  <meta property="og:title" content="Crystal Group">
+  <meta property="og:description" content="Four companies. One vision. Built on strength.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="favicon/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Marks that JS is available, so entrance/reveal states only hide content when they can be un-hidden. -->
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ==========================================================
+       HEADER / NAVIGATION  (transparent at top → glass on scroll)
+       ========================================================== -->
+  <header class="site-header" id="site-header">
+    <div class="nav container">
+      <a class="brand" href="index.html" aria-label="Crystal Group home">
+        <img src="assets/images/cg logo.png" alt="Crystal Group">
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-menu" aria-label="Open navigation">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav-panel" id="primary-menu" aria-label="Primary">
+        <ul class="nav-links">
+          <li><a class="nav-link active" href="#home">Home</a></li>
+          <li><a class="nav-link" href="#about">About</a></li>
+
+          <li class="nav-dropdown">
+            <button class="nav-link dropdown-toggle" type="button" aria-expanded="false" aria-controls="companies-menu">
+              Companies <span class="chevron" aria-hidden="true"></span>
+            </button>
+            <ul class="dropdown-menu" id="companies-menu">
+              <li><a href="core.html">C-ore Industries</a></li>
+              <li><a href="clover.html">Clover Construction</a></li>
+              <li><a href="conecc.html">Conecc Construction Limited</a></li>
+              <li><a href="crystal-premix.html">Crystal Premix Limited</a></li>
+            </ul>
+          </li>
+
+          <li><a class="nav-link" href="#projects">Projects</a></li>
+          <li><a class="quote-btn" href="#contact">Get Quote</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ==========================================================
+         HERO
+         ========================================================== -->
+    <section class="hero" id="home">
+      <div class="hero-media" data-media>
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata"
+               poster="assets/images/hero-poster.jpg" aria-hidden="true" tabindex="-1">
+          <source src="assets/videos/hero.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <div class="container hero-content">
+        <p class="eyebrow hero-line">Built On Strength</p>
+        <h1 class="hero-title hero-line">Building stronger<br>possibilities.</h1>
+        <p class="hero-copy hero-line">A group of companies connected by one vision, delivering dependable solutions with purpose.</p>
+        <p class="hero-actions hero-line">
+          <a class="btn btn-primary" href="#about">Learn More</span></a>
+        </p>
+      </div>
+
+      <a class="hero-scroll" href="#about" aria-label="Scroll to about section">
+      </a>
+    </section>
+
+    <!-- ==========================================================
+         ABOUT  (editorial two-part composition)
+         ========================================================== -->
+    <section class="about section" id="about">
+      <div class="container about-grid">
+
+        <div class="about-visual">
+          <figure class="about-frame reveal reveal-image" data-media data-parallax="9">
+            <img src="assets/images/worried man.png" alt="Crystal Group people and operations" loading="lazy" width="1000" height="1250">
+          </figure>
+          <span class="about-index reveal" data-reveal-delay="520"></span>
+          <span class="about-outline" aria-hidden="true"></span>
+        </div>
+
+        <div class="about-copy" data-reveal-stagger="90" data-reveal-base="260">
+          <p class="eyebrow reveal">About Us</p>
+          <h2 class="reveal">Building strong <br> foundations since 2010.</h2>
+          <span class="accent-line reveal"></span>
+          <p class="reveal">Crystal Group is four companies working as one.C-ore Industries Limited quarries and crushes the stone. Crystal Premix Limited turns it into ready-mix concrete. Conecc Construction Limited moulds it into blocks, pavers and kerbstones. </p>
+          <p class="reveal">Clover Construction Limited elevates it into premium, designer hardscape. Because every stage happens inside the group, quality is controlled from rock to ready and clients get one accountable partner instead of four separatesuppliers.</p>
+          <p class="reveal">
+            <a class="btn btn-ghost" href="about.html">Read More </a>
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         COMPANIES  (signature section)
+         ========================================================== -->
+    <section class="companies section" id="companies">
+      <div class="container">
+
+        <div class="companies-head">
+          <div class="companies-title-block">
+            <p class="eyebrow reveal">Companies</p>
+            <h2 class="companies-title reveal" data-reveal-delay="90">
+              <span class="t-strong">Four companies</span>
+              <span class="t-muted">One vision</span>
+            </h2>
+            <span class="accent-line accent-line-wide reveal" data-reveal-delay="260"></span>
+          </div>
+
+          <div class="companies-intro">
+            <p class="reveal" data-reveal-delay="160">Four businesses. One connected group. A shared commitment to building what comes next.</p>
+
+            <!-- Active company indicator — stays in sync with the carousel -->
+            <ol class="company-index reveal" data-reveal-delay="240" id="company-index" aria-label="Companies">
+              <li class="company-index-item"><button type="button" data-goto="0"><span class="ci-num">01</span><span class="ci-name">C-ore Industries</span></button></li>
+              <li class="company-index-item"><button type="button" data-goto="1"><span class="ci-num">02</span><span class="ci-name">Clover Construction</span></button></li>
+              <li class="company-index-item"><button type="button" data-goto="2"><span class="ci-num">03</span><span class="ci-name">Conecc Construction Limited</span></button></li>
+              <li class="company-index-item"><button type="button" data-goto="3"><span class="ci-num">04</span><span class="ci-name">Crystal Premix Limited</span></button></li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="carousel reveal" data-carousel data-reveal-delay="120">
+          <div class="company-viewport" data-viewport tabindex="0" role="group"
+               aria-roledescription="carousel" aria-label="Crystal Group companies. Use the left and right arrow keys to browse.">
+            <div class="company-track" data-track id="company-track">
+
+              <!-- COMPANY 01 ------------------------------------------------ -->
+              <article class="company-card" data-card>
+                <div class="company-card-image" data-media>
+                  <img src="assets/images/c-ore.jpg" alt="" aria-hidden="true" loading="lazy">
+                </div>
+                <div class="company-card-overlay" aria-hidden="true"></div>
+                <div class="company-card-glow" aria-hidden="true"></div>
+                <span class="company-number" aria-hidden="true">01</span>
+
+                <div class="company-card-content">
+                  <div class="company-logo" data-media>
+                    <img src="assets/images/c-ore-logo.png" alt="C-ore" loading="lazy">
+                  </div>
+                  <div class="company-card-text">
+                    <!-- Placeholder copy — replace with C-ore's approved description. -->
+                    <p class="card-copy">Precision-led delivery and dependable execution at the core of the group's work.</p>
+                    <span class="card-rule" aria-hidden="true"></span>
+                    <a href="core.html" class="card-link">More <span class="btn-arrow" aria-hidden="true">→</span><span class="sr-only"> about C-ore</span></a>
+                  </div>
+                </div>
+              </article>
+              <!-- COMPANY 02 ------------------------------------------------ -->
+              <article class="company-card" data-card>
+                <div class="company-card-image" data-media>
+                  <img src="assets/images/clover.jpeg" alt="" aria-hidden="true" loading="lazy">
+                </div>
+                <div class="company-card-overlay" aria-hidden="true"></div>
+                <div class="company-card-glow" aria-hidden="true"></div>
+                <span class="company-number" aria-hidden="true">02</span>
+
+                <div class="company-card-content">
+                  <div class="company-logo" data-media>
+                    <img src="assets/images/clover-logo.png" alt="Clover" loading="lazy">
+                  </div>
+                  <div class="company-card-text">
+                    <!-- Placeholder copy — replace with Clover's approved description. -->
+                    <p class="card-copy">Practical solutions and long-term partnerships, delivered with care and consistency.</p>
+                    <span class="card-rule" aria-hidden="true"></span>
+                    <a href="clover.html" class="card-link">More <span class="btn-arrow" aria-hidden="true">→</span><span class="sr-only"> about Clover</span></a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- COMPANY 03 ------------------------------------------------ -->
+              <article class="company-card" data-card>
+                <div class="company-card-image" data-media>
+                  <img src="assets/images/conecc.jpg" alt="" aria-hidden="true" loading="lazy">
+                </div>
+                <div class="company-card-overlay" aria-hidden="true"></div>
+                <div class="company-card-glow" aria-hidden="true"></div>
+                <span class="company-number" aria-hidden="true">03</span>
+
+                <div class="company-card-content">
+                  <div class="company-logo" data-media>
+                    <img src="assets/images/conecc-logo.png" alt="Conecc" loading="lazy">
+                  </div>
+                  <div class="company-card-text">
+                    <!-- Placeholder copy — replace with Conecc's approved description. -->
+                    <p class="card-copy">Connecting capability, people and infrastructure across the group's markets.</p>
+                    <span class="card-rule" aria-hidden="true"></span>
+                    <a href="conecc.html" class="card-link">More <span class="btn-arrow" aria-hidden="true">→</span><span class="sr-only"> about Conecc</span></a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- COMPANY 04 ------------------------------------------------ -->
+              <article class="company-card" data-card>
+                <div class="company-card-image" data-media>
+                  <img src="assets/images/crystal premix.jpg" alt="" aria-hidden="true" loading="lazy">
+                </div>
+                <div class="company-card-overlay" aria-hidden="true"></div>
+                <div class="company-card-glow" aria-hidden="true"></div>
+                <span class="company-number" aria-hidden="true">04</span>
+
+                <div class="company-card-content">
+                  <div class="company-logo" data-media>
+                    <img src="assets/images/crystal-premix-logo.png" alt="Crystal Premix" loading="lazy">
+                  </div>
+                  <div class="company-card-text">
+                    <!-- Placeholder copy — replace with Crystal Premix's approved description. -->
+                    <p class="card-copy">Consistent quality and reliable supply, supporting projects from the ground up.</p>
+                    <span class="card-rule" aria-hidden="true"></span>
+                    <a href="crystal-premix.html" class="card-link">More <span class="btn-arrow" aria-hidden="true">→</span><span class="sr-only"> about Crystal Premix</span></a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="carousel-controls">
+            <div class="carousel-dots" data-dots aria-label="Company carousel pagination"></div>
+            <div class="carousel-arrows">
+              <button class="carousel-btn" type="button" data-prev aria-label="Previous companies">
+                <span aria-hidden="true">←</span>
+              </button>
+              <button class="carousel-btn" type="button" data-next aria-label="Next companies">
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </div>
+
+          <p class="sr-only" aria-live="polite" data-carousel-status></p>
+        </div>
+
+      </div>
+    </section>
+
+   <!-- ============================================================
+     1. The Group at a Glance section
+     ============================================================ -->
+<section class="group-glance" id="group-at-a-glance" aria-labelledby="gg-title">
+  <div class="group-glance__grid" aria-hidden="true"></div>
+  <header class="group-glance__head">
+    <span class="group-glance__eyebrow">CRYSTAL GROUP</span>
+    <h2 id="gg-title">
+        Group at a Glance
+    </h2>
+    <p>
+        We're not just supplying materials.
+        <strong>We're part of what gets built.</strong>
+    </p>
+    <span class="group-glance__rule" aria-hidden="true"></span>
+</header>
+  <div class="group-glance__stage">
+    <div class="group-glance__floor" aria-hidden="true"></div>
+
+    <!-- 01 -->
+    <div class="gg-slot gg-slot--1">
+      <div class="gg-slot__shadow" aria-hidden="true"></div>
+      <div class="gg-slot__contact" aria-hidden="true"></div>
+      <div class="gg-slot__dust" aria-hidden="true"></div>
+      <div class="gg-slot__rise">
+        <div class="gg-box">
+          <div class="gg-face gg-face--top" aria-hidden="true"></div>
+          <div class="gg-face gg-face--side" aria-hidden="true"><div class="gg-strap"></div></div>
+          <div class="gg-face gg-face--front">
+            <span class="gg-tick" aria-hidden="true"></span>
+            <span class="gg-num" data-gg-target="4" data-gg-pad="2">04</span>
+            <div class="gg-label">Companies</div>
+            <div class="gg-strap" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 -->
+    <div class="gg-slot gg-slot--2">
+      <div class="gg-slot__shadow" aria-hidden="true"></div>
+      <div class="gg-slot__contact" aria-hidden="true"></div>
+      <div class="gg-slot__dust" aria-hidden="true"></div>
+      <div class="gg-slot__rise">
+        <div class="gg-box">
+          <div class="gg-face gg-face--top" aria-hidden="true"></div>
+          <div class="gg-face gg-face--side" aria-hidden="true"><div class="gg-strap"></div></div>
+          <div class="gg-face gg-face--front">
+            <span class="gg-tick" aria-hidden="true"></span>
+            <span class="gg-num" data-gg-target="11">11</span>
+            <div class="gg-label">Production and Supply sites</div>
+            <div class="gg-strap" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <div class="gg-slot gg-slot--3">
+      <div class="gg-slot__shadow" aria-hidden="true"></div>
+      <div class="gg-slot__contact" aria-hidden="true"></div>
+      <div class="gg-slot__dust" aria-hidden="true"></div>
+      <div class="gg-slot__rise">
+        <div class="gg-box">
+          <div class="gg-face gg-face--top" aria-hidden="true"></div>
+          <div class="gg-face gg-face--side" aria-hidden="true"><div class="gg-strap"></div></div>
+          <div class="gg-face gg-face--front">
+            <span class="gg-tick" aria-hidden="true"></span>
+            <span class="gg-num" data-gg-target="15">15</span>
+            <div class="gg-label">Years Of Operation</div>
+            <div class="gg-strap" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 -->
+    <div class="gg-slot gg-slot--4">
+      <div class="gg-slot__shadow" aria-hidden="true"></div>
+      <div class="gg-slot__contact" aria-hidden="true"></div>
+      <div class="gg-slot__dust" aria-hidden="true"></div>
+      <div class="gg-slot__rise">
+        <div class="gg-box">
+          <div class="gg-face gg-face--top" aria-hidden="true"></div>
+          <div class="gg-face gg-face--side" aria-hidden="true"><div class="gg-strap"></div></div>
+          <div class="gg-face gg-face--front">
+            <span class="gg-tick" aria-hidden="true"></span>
+            <span class="gg-num" data-gg-target="2356">2,356</span>
+            <div class="gg-label">Employees Across the Group</div>
+            <div class="gg-strap" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- ==========================================================
+         PROJECTS
+         To add a project: copy a .project-card block, update the
+         image path, name, location, company and the 0X / 06 index.
+         ========================================================== -->
+    <section class="projects section" id="projects">
+      <div class="container">
+
+        <div class="projects-head">
+          <div>
+            <p class="eyebrow reveal">Projects</p>
+            <h2 class="reveal" data-reveal-delay="90">Work that moves<br>the vision forward.</h2>
+          </div>
+          <a class="text-link reveal" data-reveal-delay="160" href="#contact">View Projects <span class="btn-arrow" aria-hidden="true">→</span></a>
+        </div>
+
+        <article class="project-card project-lead">
+          <a class="project-media reveal reveal-image" href="#contact" data-media aria-label="View project">
+            <img src="assets/images/project-01.jpg" alt="" aria-hidden="true" loading="lazy" width="1600" height="900">
+          </a>
+          <div class="project-meta" data-reveal-stagger="80" data-reveal-base="200">
+            <!-- Replace with the real project name -->
+            <h3 class="reveal">Project name</h3>
+            <dl class="project-facts reveal">
+              <div><dt>Location</dt><dd>Location</dd></div>
+              <div><dt>Company</dt><dd>Company</dd></div>
+            </dl>
+            <span class="project-index reveal">01 / 06</span>
+          </div>
+        </article>
+
+        <div class="project-row">
+          <article class="project-card">
+            <a class="project-media reveal reveal-image" href="#contact" data-media aria-label="View project">
+              <img src="assets/images/project-02.jpg" alt="" aria-hidden="true" loading="lazy" width="1200" height="900">
+            </a>
+            <div class="project-meta" data-reveal-stagger="80" data-reveal-base="160">
+              <h3 class="reveal">Project name</h3>
+              <dl class="project-facts reveal">
+                <div><dt>Location</dt><dd>Location</dd></div>
+                <div><dt>Company</dt><dd>Company</dd></div>
+              </dl>
+              <span class="project-index reveal">02 / 06</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <a class="project-media reveal reveal-image" href="#contact" data-media aria-label="View project">
+              <img src="assets/images/project-03.jpg" alt="" aria-hidden="true" loading="lazy" width="1200" height="900">
+            </a>
+            <div class="project-meta" data-reveal-stagger="80" data-reveal-base="220">
+              <h3 class="reveal">Project name</h3>
+              <dl class="project-facts reveal">
+                <div><dt>Location</dt><dd>Location</dd></div>
+                <div><dt>Company</dt><dd>Company</dd></div>
+              </dl>
+              <span class="project-index reveal">03 / 06</span>
+            </div>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         CLOSING CTA
+         ========================================================== -->
+   <section class="cta-final" id="contact">
+
+    <div class="cta-texture" aria-hidden="true"></div>
+
+    <div class="container cta-inner" data-reveal-stagger="110">
+
+        <p class="eyebrow reveal">Get in touch</p>
+
+        <h2 class="cta-title reveal">
+            Let's build<br>what's next.
+        </h2>
+
+        <p class="cta-copy reveal">
+            Talk to Crystal Group about your next project,
+            partnership or opportunity.
+        </p>
+
+        <p class="reveal">
+            <a class="btn btn-primary btn-lg" href="mailto:info@example.com">
+                Get a Quote
+                <span class="btn-arrow" aria-hidden="true">→</span>
+            </a>
+        </p>
+
+    </div>
+
+</section>
+
+  </main>
+
+ <!-- =========================================================
+       CRYSTAL GROUP FOOTER
+       Complete footer section only.
+  ========================================================== -->
+  <footer class="site-footer" id="site-footer">
+
+    <div class="footer-shell">
+
+      <!-- =====================================================
+           NEWSLETTER BANNER
+           Change the dimensions and spacing of this section here.
+           The banner intentionally overlaps the white footer card.
+      ====================================================== -->
+      <section class="newsletter-banner" aria-labelledby="newsletter-title">
+
+        <div class="newsletter-visual">
+          <!-- Replace this file with your transparent 3D render.
+               The container preserves the reference composition. -->
+          <img
+            class="footer-3d-object"
+            src="assets/images/3d object.jpg"
+            alt="Crystal Group construction visual"
+            width="440"
+            height="250"
+          >
+
+        </div>
+
+        <div class="newsletter-content">
+          <!-- NEWSLETTER HEADING: adjust size in .newsletter-title -->
+          <h2 class="newsletter-title" id="newsletter-title">
+            Subscribe to our newsletter to get updates to our latest collections
+          </h2>
+
+          <p class="newsletter-subtitle">
+            Get 20% off on your first order just by subscribing to our newsletter
+          </p>
+
+          <!-- INPUT: adjust dimensions in .newsletter-form / .email-input -->
+          <form class="newsletter-form" id="newsletter-form" novalidate>
+            <label class="sr-only" for="newsletter-email">Enter your email</label>
+            <div class="input-wrap">
+              <span class="input-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img">
+                  <path d="M4 6.5h16v11H4z" fill="none" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="m5 8 7 5 7-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <input
+                class="email-input"
+                id="newsletter-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="Enter your email"
+                aria-describedby="newsletter-message"
+              >
+            </div>
+
+            <!-- SUBSCRIBE BUTTON: adjust dimensions in .subscribe-button -->
+            <button class="subscribe-button" type="submit">
+              Subscribe
+            </button>
+          </form>
+
+          <p class="newsletter-message" id="newsletter-message" role="status" aria-live="polite"></p>
+
+          <p class="newsletter-disclaimer">You will be able to unsubscribe at any time.</p>
+          <p class="privacy-copy">
+            <span>Read our privacy policy</span>
+            <a href="#privacy">here</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           MAIN FOOTER CONTENT
+           Four-column desktop grid matching the reference.
+      ====================================================== -->
+      <div class="footer-main">
+
+        <!-- COLUMN 1 — BRAND -->
+        <div class="footer-brand footer-column">
+          <!-- LOGO SIZE: adjust width in .brand-logo -->
+          <a class="brand-link" href="#" aria-label="Crystal Group of Companies home">
+            <img
+              class="brand-logo"
+              src="assets/images/cg logo.png"
+              alt="Crystal Group of Companies"
+              width="190"
+              height="56"
+            >
+          </a>
+
+          <!-- EDITABLE COMPANY DESCRIPTION -->
+          <p class="brand-description">
+            Building stronger foundations through quality materials, reliable
+            solutions and dependable service for projects of every scale.
+          </p>
+
+          <!-- SOCIAL ICONS: adjust size/spacing in .social-links -->
+          <nav class="social-links" aria-label="Social media">
+            <a href="#" aria-label="Facebook" class="social-link">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4.5c-.5-.1-1.7-.2-3.2-.2-3.1 0-5.2 1.9-5.2 5.4V13H5.2v3.9h3.4V24h4.1v-7.1h3.5l.6-3.9h-4.1V10c0-1.1.3-2 1.3-2Z"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram" class="social-link">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.4" cy="6.8" r="1" fill="currentColor"/></svg>
+            </a>
+            <a href="#" aria-label="Tik" class="social-link">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.1a4.4 4.4 0 0 1-1.9 2.9v2.4h3.1c1.8-1.7 2.7-4.1 2.7-7.1Z"/><path d="M12 21.5c2.6 0 4.8-.9 6.4-2.4l-3.1-2.4c-.9.6-2 .9-3.3.9-2.5 0-4.6-1.7-5.4-4H3.4V16c1.6 3.2 4.8 5.5 8.6 5.5Z"/><path d="M6.6 13.6a5.8 5.8 0 0 1 0-3.3V7.9H3.4a9.7 9.7 0 0 0 0 8.1l3.2-2.4Z"/><path d="M12 6.3c1.4 0 2.7.5 3.7 1.4l2.8-2.8C16.8 3.3 14.6 2.5 12 2.5c-3.8 0-7 2.3-8.6 5.4l3.2 2.4c.8-2.3 2.9-4 5.4-4Z"/></svg>
+            </a>
+          </nav>
+        </div>
+
+        <!-- COLUMN 2 — COMPANY -->
+        <div class="footer-column">
+          <h3 class="footer-heading">Company</h3>
+          <nav class="footer-nav" aria-label="Company">
+            <a href="#about">About Us</a>
+            <a href="#companies">Companies</a>
+            <a href="#testimonial">Testimonial</a>
+          </nav>
+        </div>
+          <!-- COLUMN 3 — LINKS + CONTACT -->
+        <div class="footer-column footer-contact-column">
+          <div class="footer-link-group">
+            <h3 class="footer-heading">Quick Links</h3>
+            <nav class="footer-nav" aria-label="Links">
+              <a href="#work">Home</a>
+              <a href="#projects">Projects</a>
+              <a href="#contact">Get Quote</a>
+            </nav>
+          </div>
+        </div>
+         <!-- COLUMN 2 — SUPPORT -->
+        <div class="footer-column">
+          <h3 class="footer-heading">Contact Us</h3>
+          <nav class="footer-nav" aria-label="Support">
+            <a class="contact-item" href="tel:+260763255555">
+              <span class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M7.1 3.5 9.7 3c.7-.1 1.4.3 1.7 1l1.2 3c.2.6 0 1.3-.5 1.7L10.5 10c1 2.1 2.6 3.7 4.7 4.7l1.3-1.6c.4-.5 1.1-.7 1.7-.5l3 1.2c.7.3 1.1 1 .9 1.7l-.5 2.6c-.2.8-.9 1.4-1.8 1.4C11.1 19.5 4.5 12.9 4.5 4.9c0-.9.6-1.6 1.4-1.8l1.2-.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+              </span>
+              <span>+260 763 255 555</span>
+            </a>
+            <a class="contact-item" href="mailto:info@crystalgroup.com">
+              <span class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m5 7 7 5 7-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span>info@crystalgroupafrica.com</span>
+            </a>
+          </nav>
+        </div>
+
+      </div>
+
+      <!-- =====================================================
+           BOTTOM LEGAL BAR
+           Adjust padding, border and link spacing here.
+      ====================================================== -->
+      <div class="footer-legal">
+        <p class="copyright">©2026 Copyright by Crystal Group of Companies. All rights reserved.</p>
+
+        <nav class="legal-nav" aria-label="Legal">
+          <a href="#privacy">Privacy Policy</a>
+          <a href="#terms">Terms of Use</a>
+          <a href="#legal">Legal</a>
+          <a href="#sitemap">Site Map</a>
+        </nav>
+      </div>
+
+    </div>
+  </footer>
+  <button class="scroll-top" type="button" aria-label="Scroll back to top">
+    <span aria-hidden="true">↑</span>
+  </button>
+
+  <script src="js/script.js" defer></script>
+</body>
+</html>

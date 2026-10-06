@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Group at a Glance — section</title>
+
+<!-- PREVIEW ONLY — delete this block when integrating -->
+<style>html,body{margin:0;padding:0;background:#fff}</style>
+
+<!-- OPTIONAL: condensed industrial type. Remove to inherit your site's fonts. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@500;600;700&display=swap" rel="stylesheet">
+
+<!-- ============================================================
+     2. CSS  — everything namespaced under .group-glance
+     ============================================================ -->
+<style>
+.group-glance{
+  /* brand */
+  --gg-blue:#0f2236;
+  --gg-blue-soft:#1c3149;
+  --gg-orange:#eb5742;
+
+  /* concrete palette (light source: upper-left) */
+  --gg-face:#b4b1ab;
+  --gg-top:#cbc8c2;
+  --gg-side:#8d8a84;
+  --gg-bg:#f4f4f2;
+
+  /* Replace with your own texture at any time:
+     --gg-texture:url("assets/img/concrete-texture.jpg"); */
+  --gg-texture:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  --gg-blotch:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02 0.03' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23b)'/%3E%3C/svg%3E");
+
+  /* master unit — every block dimension is a multiple of this */
+  --gg-u:clamp(0.68px, 0.062vw, 0.95px);
+  --gg-paver:calc(var(--gg-u) * 50);
+
+  --gg-rx:-7deg;
+  --gg-ry:-17deg;
+
+  position:relative;
+  overflow:hidden;
+  box-sizing:border-box;
+  padding:clamp(48px,6vw,96px) 20px clamp(32px,4vw,64px);
+  background-color:var(--gg-bg);
+  font-family:"Barlow","Helvetica Neue",Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.group-glance *,
+.group-glance *::before,
+.group-glance *::after{box-sizing:border-box}
+
+/* --- blueprint ground ------------------------------------------------ */
+.group-glance__grid{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(15,34,54,.040) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(15,34,54,.040) 1px,transparent 1px);
+  background-size:48px 48px;
+  background-position:center bottom;
+  -webkit-mask-image:radial-gradient(120% 90% at 50% 92%,#000 25%,transparent 78%);
+          mask-image:radial-gradient(120% 90% at 50% 92%,#000 25%,transparent 78%);
+}
+
+/* --- heading --------------------------------------------------------- */
+.group-glance__head{position:relative;max-width:1200px;margin:0 auto 8px;text-align:center}
+.group-glance__title{
+  margin:0;
+  font-family:"Barlow Condensed","Arial Narrow",Helvetica,sans-serif;
+  font-weight:700;
+  font-size:clamp(30px,3.6vw,54px);
+  line-height:1.02;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  color:var(--gg-blue);
+  opacity:0;transform:translateY(14px);
+  transition:opacity .8s ease,transform .9s cubic-bezier(.2,.75,.2,1);
+}
+.group-glance__rule{
+  display:block;width:64px;height:3px;margin:20px auto 0;
+  background:var(--gg-orange);
+  transform:scaleX(0);transform-origin:center;
+  transition:transform .8s cubic-bezier(.2,.75,.2,1) .18s;
+}
+.group-glance.is-built .group-glance__title,
+.group-glance.gg-static .group-glance__title{opacity:1;transform:none}
+.group-glance.is-built .group-glance__rule,
+.group-glance.gg-static .group-glance__rule{transform:scaleX(1)}
+
+/* --- stage ----------------------------------------------------------- */
+.group-glance__stage{
+  position:relative;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  gap:calc(var(--gg-u) * 26);
+  padding:calc(var(--gg-u) * 120) 0 calc(var(--gg-u) * 74);
+  perspective:2200px;
+  perspective-origin:50% 42%;
+}
+.group-glance__floor{
+  position:absolute;left:50%;bottom:calc(var(--gg-u) * 70);
+  width:min(1120px,94%);height:1px;transform:translateX(-50%);
+  background:linear-gradient(90deg,transparent,rgba(15,34,54,.20) 22%,rgba(15,34,54,.20) 78%,transparent);
+}
+.group-glance__floor::after{
+  content:"";position:absolute;left:0;right:0;top:0;height:clamp(40px,7vw,80px);
+  background:linear-gradient(180deg,rgba(15,34,54,.055),transparent 85%);
+}
+
+/* --- one block slot -------------------------------------------------- */
+.gg-slot{position:relative;flex:0 0 auto;transform-style:preserve-3d}
+
+/* shadows sit on the floor and do NOT rise with the block */
+.gg-slot__shadow{
+  position:absolute;z-index:0;left:50%;bottom:calc(var(--gg-u) * -6);
+  width:calc(var(--w) * var(--gg-u) * 1.02);
+  height:calc(var(--d) * var(--gg-u) * .78);
+  background:radial-gradient(50% 50% at 50% 50%,rgba(16,22,30,.46),rgba(16,22,30,.16) 58%,rgba(16,22,30,0) 78%);
+  transform:translateX(-46%) skewX(-34deg) scaleY(.9);
+  filter:blur(calc(var(--gg-u) * 14));
+  opacity:0;
+}
+.gg-slot__contact{
+  position:absolute;z-index:0;left:50%;bottom:calc(var(--gg-u) * -1);
+  width:calc(var(--w) * var(--gg-u) * .94);
+  height:calc(var(--d) * var(--gg-u) * .34);
+  background:radial-gradient(50% 50% at 50% 50%,rgba(10,14,20,.62),rgba(10,14,20,0) 72%);
+  transform:translateX(-48%) skewX(-30deg);
+  filter:blur(calc(var(--gg-u) * 5));
+  opacity:0;
+}
+.gg-slot__dust{
+  position:absolute;z-index:0;left:50%;bottom:calc(var(--gg-u) * -10);
+  width:calc(var(--w) * var(--gg-u) * 1.5);
+  height:calc(var(--d) * var(--gg-u) * .8);
+  background:radial-gradient(50% 50% at 50% 50%,rgba(255,255,255,.62),rgba(226,223,216,.22) 45%,rgba(226,223,216,0) 72%);
+  transform:translateX(-50%) skewX(-30deg) scale(.35);
+  opacity:0;pointer-events:none;
+}
+
+/* the animated lift wrapper */
+.gg-slot__rise{position:relative;z-index:1;transform-style:preserve-3d;opacity:0}
+
+/* the block body */
+.gg-box{
+  position:relative;
+  width:calc(var(--w) * var(--gg-u));
+  height:calc(var(--h) * var(--gg-u));
+  transform-style:preserve-3d;
+  transform:translateY(var(--hy,0px)) rotateX(calc(var(--gg-rx) + var(--tx,0deg))) rotateY(calc(var(--gg-ry) + var(--ty,0deg)));
+  transition:transform .5s cubic-bezier(.2,.7,.2,1);
+}
+
+/* --- concrete faces -------------------------------------------------- */
+.gg-face{
+  position:absolute;top:50%;left:50%;overflow:hidden;
+  background-color:var(--gg-face);
+  background-image:
+    repeating-linear-gradient(90deg,rgba(28,24,20,.34) 0 1px,rgba(255,255,255,.14) 1px 2px,rgba(0,0,0,0) 2px var(--gg-paver)),
+    repeating-linear-gradient(0deg,rgba(28,24,20,.30) 0 1px,rgba(255,255,255,.16) 1px 2px,rgba(0,0,0,0) 2px var(--gg-paver)),
+    linear-gradient(142deg,rgba(255,255,255,.17),rgba(255,255,255,0) 46%,rgba(20,18,16,.12));
+}
+/* fine aggregate grain */
+.gg-face::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:var(--gg-texture);
+  background-size:calc(var(--gg-u) * 150);
+  mix-blend-mode:overlay;opacity:.5;
+}
+/* coarse colour variation + bevel / ambient occlusion */
+.gg-face::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:var(--gg-blotch);
+  background-size:calc(var(--gg-u) * 420);
+  mix-blend-mode:multiply;opacity:.16;
+  box-shadow:
+    inset calc(var(--gg-u) * 1) calc(var(--gg-u) * 1) 0 rgba(255,255,255,.28),
+    inset calc(var(--gg-u) * -1) calc(var(--gg-u) * -1) 0 rgba(30,26,22,.30),
+    inset 0 0 calc(var(--gg-u) * 26) rgba(30,26,22,.16);
+}
+
+.gg-face--front{
+  width:calc(var(--w) * var(--gg-u));
+  height:calc(var(--h) * var(--gg-u));
+  margin-left:calc(var(--w) * var(--gg-u) / -2);
+  margin-top:calc(var(--h) * var(--gg-u) / -2);
+  transform:translateZ(calc(var(--d) * var(--gg-u) / 2));
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 calc(var(--gg-u) * 22) calc(var(--gg-u) * 70);
+}
+.gg-face--top{
+  width:calc(var(--w) * var(--gg-u));
+  height:calc(var(--d) * var(--gg-u));
+  margin-left:calc(var(--w) * var(--gg-u) / -2);
+  margin-top:calc(var(--d) * var(--gg-u) / -2);
+  transform:rotateX(90deg) translateZ(calc(var(--h) * var(--gg-u) / 2));
+  background-color:var(--gg-top);
+}
+.gg-face--top::after{
+  box-shadow:
+    inset calc(var(--gg-u) * 1) calc(var(--gg-u) * 1) 0 rgba(255,255,255,.34),
+    inset 0 0 calc(var(--gg-u) * 20) rgba(30,26,22,.10);
+}
+.gg-face--side{
+  width:calc(var(--d) * var(--gg-u));
+  height:calc(var(--h) * var(--gg-u));
+  margin-left:calc(var(--d) * var(--gg-u) / -2);
+  margin-top:calc(var(--h) * var(--gg-u) / -2);
+  transform:rotateY(90deg) translateZ(calc(var(--w) * var(--gg-u) / 2));
+  background-color:var(--gg-side);
+}
+.gg-face--side::after{
+  background:linear-gradient(100deg,rgba(24,20,18,.34),rgba(24,20,18,.10));
+  mix-blend-mode:multiply;opacity:1;
+  box-shadow:
+    inset calc(var(--gg-u) * 1) calc(var(--gg-u) * 1) 0 rgba(255,255,255,.14),
+    inset 0 0 calc(var(--gg-u) * 30) rgba(24,20,18,.30);
+}
+
+/* --- banding strap (reference detail, brand-accented) ---------------- */
+.gg-strap{
+  position:absolute;left:0;right:0;bottom:calc(var(--gg-u) * 44);
+  height:calc(var(--gg-u) * 11);
+  background:linear-gradient(180deg,#f3f2ef,#dcdad5 62%,#c3c0ba);
+  box-shadow:0 calc(var(--gg-u) * 2) calc(var(--gg-u) * 4) rgba(24,20,18,.32);
+}
+.gg-strap::after{
+  content:"";position:absolute;left:0;right:0;top:50%;height:calc(var(--gg-u) * 2.4);
+  transform:translateY(-50%);background:var(--gg-orange);opacity:.9;
+  transition:opacity .35s ease;
+}
+.gg-face--side .gg-strap{left:0;right:0}
+
+/* --- statistic typography ------------------------------------------- */
+.gg-tick{
+  width:calc(var(--gg-u) * 44);height:calc(var(--gg-u) * 3);
+  background:var(--gg-orange);
+  margin-bottom:calc(var(--gg-u) * 12);
+  transition:width .4s cubic-bezier(.2,.7,.2,1);
+}
+.gg-num{
+  display:block;
+  font-family:"Barlow Condensed","Arial Narrow",Helvetica,sans-serif;
+  font-weight:700;
+  font-size:max(34px, calc(var(--gg-u) * var(--num)));
+  line-height:.86;
+  letter-spacing:.005em;
+  font-variant-numeric:tabular-nums;
+  color:var(--gg-blue);
+  text-shadow:
+    0 calc(var(--gg-u) * -1) 0 rgba(255,255,255,.34),
+    0 calc(var(--gg-u) * 1.5) calc(var(--gg-u) * 2) rgba(255,255,255,.22);
+}
+.gg-label{
+  margin-top:calc(var(--gg-u) * 10);
+  font-weight:600;
+  font-size:max(11.5px, calc(var(--gg-u) * 15));
+  line-height:1.22;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--gg-blue-soft);
+  text-shadow:0 1px 0 rgba(255,255,255,.26);
+  max-width:calc(var(--w) * var(--gg-u) - var(--gg-u) * 44);
+  text-wrap:pretty;
+}
+
+/* --- block sizes: same 50u paver module, different stack counts ------ */
+.gg-slot--1{--w:200;--h:200;--d:100;--num:54;--delay:0ms}
+.gg-slot--2{--w:250;--h:250;--d:100;--num:60;--delay:350ms}
+.gg-slot--3{--w:250;--h:300;--d:150;--num:64;--delay:700ms}
+.gg-slot--4{--w:300;--h:350;--d:150;--num:76;--delay:1050ms}
+
+/* --- construction animation ----------------------------------------- */
+@keyframes gg-place{
+  0%  {opacity:0;transform:translate3d(0,calc(var(--gg-u) * 86),calc(var(--gg-u) * -60)) rotateX(6deg) rotateY(9deg) scale(.93)}
+  16% {opacity:1}
+  62% {transform:translate3d(0,calc(var(--gg-u) * -9),0) rotateX(-1.4deg) rotateY(1.4deg) scale(1.006)}
+  82% {transform:translate3d(0,calc(var(--gg-u) * 2.5),0) rotateX(.5deg) rotateY(-.4deg) scale(.999)}
+  100%{opacity:1;transform:none}
+}
+@keyframes gg-shadow-in{
+  0%  {opacity:0;transform:translateX(-46%) skewX(-34deg) scaleY(.9) scaleX(.86)}
+  60% {opacity:1}
+  100%{opacity:1;transform:translateX(-46%) skewX(-34deg) scaleY(.9) scaleX(1)}
+}
+@keyframes gg-contact-in{0%{opacity:0}55%{opacity:.6}100%{opacity:1}}
+@keyframes gg-dust{
+  0%  {opacity:0;transform:translateX(-50%) skewX(-30deg) scale(.35)}
+  8%  {opacity:.55}
+  100%{opacity:0;transform:translateX(-50%) skewX(-30deg) scale(1.18)}
+}
+.group-glance.is-built .gg-slot__rise{
+  animation:gg-place 1.05s cubic-bezier(.22,.78,.2,1) var(--delay) both;
+}
+.group-glance.is-built .gg-slot__shadow{
+  animation:gg-shadow-in .95s cubic-bezier(.22,.78,.2,1) var(--delay) both;
+}
+.group-glance.is-built .gg-slot__contact{
+  animation:gg-contact-in .95s cubic-bezier(.22,.78,.2,1) var(--delay) both;
+}
+.group-glance.is-built .gg-slot__dust{
+  animation:gg-dust .9s ease-out calc(var(--delay) + 640ms) both;
+}
+
+/* --- hover (desktop, pointer:fine only — wired in JS) ---------------- */
+.gg-slot.is-hover .gg-box{--hy:-5px}
+.gg-slot.is-hover .gg-slot__shadow{opacity:1;filter:blur(calc(var(--gg-u) * 18))}
+.gg-slot.is-hover .gg-tick{width:calc(var(--gg-u) * 76)}
+.gg-slot.is-hover .gg-strap::after{opacity:1}
+
+/* --- reduced motion: show everything, no movement -------------------- */
+.group-glance.gg-static .gg-slot__rise{opacity:1;animation:none}
+.group-glance.gg-static .gg-slot__shadow{opacity:1}
+.group-glance.gg-static .gg-slot__contact{opacity:1}
+.group-glance.gg-static .gg-box{transition:none}
+.group-glance.gg-static .gg-slot__dust{display:none}
+@media (prefers-reduced-motion:reduce){
+  .group-glance .gg-slot__rise{opacity:1;animation:none!important}
+  .group-glance .gg-slot__shadow,
+  .group-glance .gg-slot__contact{opacity:1;animation:none!important}
+  .group-glance .gg-slot__dust{display:none}
+  .group-glance__title{opacity:1;transform:none;transition:none}
+  .group-glance__rule{transform:scaleX(1);transition:none}
+}
+
+/* --- responsive ------------------------------------------------------ */
+@media (max-width:860px){
+  .group-glance{--gg-u:.85px;--gg-ry:-15deg}
+  .group-glance__stage{
+    display:grid;grid-template-columns:repeat(2,auto);
+    justify-content:center;align-items:end;
+    gap:calc(var(--gg-u) * 90) calc(var(--gg-u) * 60);
+    padding:calc(var(--gg-u) * 90) 0 calc(var(--gg-u) * 60);
+  }
+  .group-glance__floor{display:none}
+  .gg-slot--1{--w:240;--h:200;--d:110;--num:58}
+  .gg-slot--2{--w:240;--h:250;--d:110;--num:58}
+  .gg-slot--3{--w:240;--h:250;--d:110;--num:58}
+  .gg-slot--4{--w:240;--h:300;--d:110;--num:64}
+}
+@media (max-width:620px){
+  .group-glance{--gg-u:.9px;--gg-ry:-13deg;--gg-rx:-6deg;padding-left:16px;padding-right:16px}
+  .group-glance__stage{
+    grid-template-columns:auto;
+    gap:calc(var(--gg-u) * 74);
+    padding:calc(var(--gg-u) * 74) 0 calc(var(--gg-u) * 50);
+  }
+  .gg-slot--1,.gg-slot--2,.gg-slot--3,.gg-slot--4{--w:262;--h:210;--d:100;--num:62}
+  .gg-label{font-size:max(12px, calc(var(--gg-u) * 16))}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     1. HTML — the Group at a Glance section
+     ============================================================ -->
+<section class="group-glance" id="group-at-a-glance" aria-labelledby="gg-title">
+  <div class="group-glance__grid" aria-hidden="true"></div>
+
+  <header class="group-glance__head">
+    <h2 class="group-glance__title" id="gg-title">Group at a Glance</h2>
+    <span class="group-glance__rule" aria-hidden="true"></span>
+  </header>
+
+  <div class="group-glance__stage">
+    <div class="group-glance__floor" aria-hidden="true"></div>
+
+    <!-- 01 -->
+    <div class="gg-slot gg-slot--1">
+      <div class="gg-slot__shadow" aria-hidden="true"></div>
+      <div class="gg-slot__contact" aria-hidden="true"></div>
+      <div class="gg-slot__dust" aria-hidden="true"></div>
+      <div class="gg-slot__rise">
+        <div class="gg-box">
+          <div class="gg-face gg-face--top" aria-hidden="true"></div>
+          <div class="gg-face gg-face--side" aria-hidden="true"><div class="gg-strap"></div></div>
+          <div class="gg-face gg-face--front">
+            <span class="gg-tick" aria-hidden="true"></span>
+            <span class="gg-num" data-gg-target="4" data-gg-pad="2">04</span>
+            <div class="gg-label">Companies</div>
+            <div class="gg-strap" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 -->
+    <div class="gg-slot gg-slot--2">
+      <div class="gg-slot__shadow" aria-hidden="true"></div>
+      <div class="gg-slot__contact" aria-hidden="true"></div>
+      <div class="gg-slot__dust" aria-hidden="true"></div>
+      <div class="gg-slot__rise">
+        <div class="gg-box">
+          <div class="gg-face gg-face--top" aria-hidden="true"></div>
+          <div class="gg-face gg-face--side" aria-hidden="true"><div class="gg-strap"></div></div>
+          <div class="gg-face gg-face--front">
+            <span class="gg-tick" aria-hidden="true"></span>
+            <span class="gg-num" data-gg-target="11">11</span>
+            <div class="gg-label">Production and Supply sites</div>
+            <div class="gg-strap" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <div class="gg-slot gg-slot--3">
+      <div class="gg-slot__shadow" aria-hidden="true"></div>
+      <div class="gg-slot__contact" aria-hidden="true"></div>
+      <div class="gg-slot__dust" aria-hidden="true"></div>
+      <div class="gg-slot__rise">
+        <div class="gg-box">
+          <div class="gg-face gg-face--top" aria-hidden="true"></div>
+          <div class="gg-face gg-face--side" aria-hidden="true"><div class="gg-strap"></div></div>
+          <div class="gg-face gg-face--front">
+            <span class="gg-tick" aria-hidden="true"></span>
+            <span class="gg-num" data-gg-target="15">15</span>
+            <div class="gg-label">Years Of Operation</div>
+            <div class="gg-strap" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 -->
+    <div class="gg-slot gg-slot--4">
+      <div class="gg-slot__shadow" aria-hidden="true"></div>
+      <div class="gg-slot__contact" aria-hidden="true"></div>
+      <div class="gg-slot__dust" aria-hidden="true"></div>
+      <div class="gg-slot__rise">
+        <div class="gg-box">
+          <div class="gg-face gg-face--top" aria-hidden="true"></div>
+          <div class="gg-face gg-face--side" aria-hidden="true"><div class="gg-strap"></div></div>
+          <div class="gg-face gg-face--front">
+            <span class="gg-tick" aria-hidden="true"></span>
+            <span class="gg-num" data-gg-target="2356">2,356</span>
+            <div class="gg-label">Employees Across the Group</div>
+            <div class="gg-strap" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     3. VANILLA JAVASCRIPT — sequence, counters, mouse interaction
+     ============================================================ -->
+<script>
+(function () {
+  var root = document.querySelector('.group-glance');
+  if (!root) return;
+
+  var DELAYS = [0, 350, 700, 1050];       // block placement order
+  var COUNT_MS = 1150;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var slots = [].slice.call(root.querySelectorAll('.gg-slot'));
+  var nums = [].slice.call(root.querySelectorAll('[data-gg-target]'));
+
+  function format(value, el) {
+    var n = Math.round(value);
+    var s = n.toLocaleString('en-US');
+    var pad = parseInt(el.getAttribute('data-gg-pad'), 10);
+    if (pad && s.length < pad) s = new Array(pad - s.length + 1).join('0') + s;
+    return s;
+  }
+
+  function count(el) {
+    var target = parseFloat(el.getAttribute('data-gg-target'));
+    var start = null;
+    el.textContent = format(0, el);
+    function step(ts) {
+      if (start === null) start = ts;
+      var p = Math.min((ts - start) / COUNT_MS, 1);
+      var eased = 1 - Math.pow(1 - p, 3);          // easeOutCubic
+      el.textContent = format(target * eased, el);
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = format(target, el);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function build() {
+    root.classList.add('is-built');
+    nums.forEach(function (el, i) {
+      setTimeout(function () { count(el); }, (DELAYS[i] || 0) + 140);
+    });
+  }
+
+  if (reduce) {
+    root.classList.add('gg-static');
+    nums.forEach(function (el) {
+      el.textContent = format(parseFloat(el.getAttribute('data-gg-target')), el);
+    });
+  } else if ('IntersectionObserver' in window) {
+    nums.forEach(function (el) { el.textContent = format(0, el); });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { io.disconnect(); build(); }   // runs once
+      });
+    }, { threshold: 0.25 });
+    io.observe(root);
+  } else {
+    build();
+  }
+
+  /* subtle mouse tilt — desktop pointers only */
+  if (!reduce && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    slots.forEach(function (slot) {
+      var box = slot.querySelector('.gg-box');
+      var frame = null, rx = 0, ry = 0;
+
+      function apply() {
+        frame = null;
+        box.style.setProperty('--tx', rx.toFixed(2) + 'deg');
+        box.style.setProperty('--ty', ry.toFixed(2) + 'deg');
+      }
+      slot.addEventListener('mouseenter', function () { slot.classList.add('is-hover'); });
+      slot.addEventListener('mousemove', function (e) {
+        var r = slot.getBoundingClientRect();
+        rx = ((e.clientY - r.top) / r.height - 0.5) * -3.4;
+        ry = ((e.clientX - r.left) / r.width - 0.5) * 4.4;
+        if (!frame) frame = requestAnimationFrame(apply);
+      });
+      slot.addEventListener('mouseleave', function () {
+        slot.classList.remove('is-hover');
+        rx = 0; ry = 0;
+        if (!frame) frame = requestAnimationFrame(apply);
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>
